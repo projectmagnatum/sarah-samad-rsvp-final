@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+/* Premium Wedding RSVP Design System */
+
+@layer base {
+  :root {
+    /* Soft cream background palette */
+    --background: 45 50% 98%;
+    --foreground: 220 15% 15%;
+
+    /* Cards with subtle warmth */
+    --card: 40 40% 97%;
+    --card-foreground: 220 15% 15%;
+
+    /* Popover matching cards */
+    --popover: 40 40% 99%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Gold/Champagne primary */
+    --primary: 38 70% 50%;
+    --primary-foreground: 45 50% 98%;
+
+    /* Soft champagne secondary */
+    --secondary: 38 30% 92%;
+    --secondary-foreground: 220 15% 20%;
+
+    /* Muted tones */
+    --muted: 40 20% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent - rose gold hint */
+    --accent: 15 40% 90%;
+    --accent-foreground: 220 15% 15%;
+
+    /* Semantic colors */
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 55% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 38 25% 88%;
+    --input: 38 20% 90%;
+    --ring: 38 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Glassmorphism */
+    --glass-bg: 40 40% 99% / 0.7;
+    --glass-border: 38 30% 85% / 0.5;
+    --glass-shadow: 0 8px 32px hsla(38, 30%, 50%, 0.08);
+
+    /* Glow effect for new items */
+    --glow-gold: 0 0 20px hsla(38, 70%, 50%, 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 40 35% 96%;
+    --sidebar-foreground: 220 15% 25%;
+    --sidebar-primary: 38 70% 50%;
+    --sidebar-primary-foreground: 45 50% 98%;
+    --sidebar-accent: 38 25% 92%;
+    --sidebar-accent-foreground: 220 15% 15%;
+    --sidebar-border: 38 20% 90%;
+    --sidebar-ring: 38 70% 50%;
+  }
+
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 40 30% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 40 30% 95%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 40 30% 95%;
+
+    --primary: 38 65% 55%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 30% 90%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 40 20% 65%;
+
+    --accent: 220 15% 18%;
+    --accent-foreground: 40 30% 95%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 50% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 38 65% 55%;
+
+    --glass-bg: 220 18% 12% / 0.8;
+    --glass-border: 220 15% 25% / 0.5;
+    --glass-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+
+    --glow-gold: 0 0 20px hsla(38, 65%, 55%, 0.3);
+
+    --sidebar-background: 220 18% 11%;
+    --sidebar-foreground: 40 30% 90%;
+    --sidebar-primary: 38 65% 55%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 15% 16%;
+    --sidebar-accent-foreground: 40 30% 95%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 38 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-md border border-border/50 shadow-lg;
+  }
+
+  /* Script font for headers */
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+
+  /* Serif font for messages */
+  .font-serif-elegant {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    @apply bg-gradient-to-r from-primary via-amber-400 to-primary bg-clip-text text-transparent;
+  }
+
+  /* Glow effect for new items */
+  .glow-new {
+    box-shadow: var(--glow-gold);
+    animation: glow-pulse 2s ease-in-out;
+  }
+
+  /* Status badges */
+  .badge-attending {
+    @apply bg-success/15 text-success border border-success/30;
+  }
+
+  .badge-declined {
+    @apply bg-destructive/15 text-destructive border border-destructive/30;
+  }
+
+  .badge-pending {
+    @apply bg-muted text-muted-foreground border border-border;
+  }
+}
+
+@layer utilities {
+  /* Smooth scrollbar */
+  .scrollbar-elegant::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-elegant::-webkit-scrollbar-track {
+    @apply bg-muted/50 rounded-full;
+  }
+
+  .scrollbar-elegant::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-primary/50 transition-colors;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsla(38, 70%, 50%, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px hsla(38, 70%, 50%, 0.6);
+  }
+}
