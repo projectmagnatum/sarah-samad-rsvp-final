@@ -19,7 +19,7 @@ export default function DashboardPage() {
         transition={{ duration: 0.5 }}
         className="mb-10"
       >
-        <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-foreground">
+        <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-heading">
           DASHBOARD
         </h1>
         <p className="mt-2 text-muted-foreground">
@@ -56,12 +56,12 @@ export default function DashboardPage() {
         transition={{ delay: 0.4 }}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-sans text-[14px] text-foreground">
+          <h2 className="font-sans text-[14px] text-heading">
             RECENT RESPONSES
           </h2>
           <a 
             href="/responses" 
-            className="text-sm text-primary hover:underline underline-offset-4"
+            className="text-sm text-accent hover:underline underline-offset-4"
           >
             View all →
           </a>

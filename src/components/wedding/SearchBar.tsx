@@ -74,7 +74,7 @@ export function SearchBar({
         {/* Download CSV */}
         <Button
           onClick={onDownloadCsv}
-          className="h-10 px-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl gap-2"
+          className="h-10 px-4 bg-accent text-primary-foreground hover:bg-theme/80 rounded-xl gap-2"
         >
           <Download className="w-4 h-4" />
           <span className="hidden sm:inline">Download CSV</span>

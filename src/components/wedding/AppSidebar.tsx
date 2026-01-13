@@ -31,13 +31,13 @@ export function AppSidebar() {
       <SidebarHeader className="p-6 border-b border-border/50">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Heart className="w-5 h-5 text-primary fill-primary/20" />
+            <Heart className="w-5 h-5 text-heading fill-theme/10" />
           </div>
           <div>
-            <h1 className="font-script text-2xl text-foreground leading-none">
-              Sarah & Samad's
+            <h1 className="font-script text-2xl text-heading leading-none">
+              {import.meta.env.VITE_COUPLE_NAME}
             </h1>
-            <p className="text-xs text-muted-foreground mt-0.5">RSVP Manager</p>
+            <p className="text-xs text-muted-theme mt-0.5">RSVP Manager</p>
           </div>
         </div>
       </SidebarHeader>
@@ -79,8 +79,8 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t border-border/50">
-        <p className="text-xs text-muted-foreground text-center">
-          Sarah & Samad • August 2026
+        <p className="text-xs text-muted-theme text-center">
+          {import.meta.env.VITE_WEDDING_DATE}
         </p>
       </SidebarFooter>
     </Sidebar>

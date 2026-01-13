@@ -19,7 +19,16 @@ export default {
         serif: ['Playfair Display', 'Georgia', 'serif'],
       },
       colors: {
-        border: "hsl(var(--border))",
+        "theme": "hsl(var(--theme))",
+        "muted-theme": "hsl(var(--muted-theme))",
+        "heading": "hsl(var(--heading))",
+        "hero-text": "hsl(var(--hero-text))",
+        "test": "hsl(var(--test))",
+        "border": "hsl(var(--border))",
+        "card-bg-login": "hsl(var(--card-bg-login))",
+        "accent": "hsl(var(--accent))",
+        "rsvp-card-header": "hsl(var(--rsvp-card-header))",
+
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -43,10 +52,6 @@ export default {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

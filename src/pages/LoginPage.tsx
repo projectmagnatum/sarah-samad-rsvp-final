@@ -13,9 +13,8 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Grab variables from .env
-  const coupleName = import.meta.env.VITE_COUPLE_NAME || "The Happy Couple";
-  const weddingDate = import.meta.env.VITE_WEDDING_DATE || "Coming Soon";
+  const coupleName = import.meta.env.VITE_COUPLE_NAME;
+  const weddingDate = import.meta.env.VITE_WEDDING_DATE;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,32 +43,62 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      {/* 1. Import the Font locally for this page */}
+      {/* 1. Custom Styles for Fonts and Animations */}
       <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-          .font-great-vibes { font-family: 'Great Vibes', cursive; }`}
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+          .font-great-vibes { font-family: 'Great Vibes', cursive; }
+
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+
+          @keyframes fadeSlideUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in {
+            opacity: 0; 
+            animation: fadeIn 3s ease-out forwards;
+            animation-delay: 1s; /* 1 second delay for Sarah & Samad */
+          }
+
+          .animate-fade-slide-up {
+            opacity: 0; 
+            animation: fadeSlideUp 1.5s ease-out forwards;
+            animation-delay: 1.8s; /* Starts as the name is mid-fade */
+          }
+        `}
       </style>
 
-      {/* 2. The New Header Section */}
-      <div className="text-center mb-8 space-y-2">
-        <h1 className="font-great-vibes text-5xl md:text-6xl text-gray-800">
+      {/* 2. Animated Header Section */}
+      <div className="text-center mb-8 space-y-1">
+        <h1 className="font-great-vibes text-5xl md:text-6xl text-gray-800 text-heading animate-fade-in">
           {coupleName}
         </h1>
-        <p className="text-sm md:text-base font-sans uppercase tracking-[0.2em] text-gray-500 font-medium">
+        <p className="text-sm md:text-base text-muted-theme font-sans uppercase tracking-[0.2em] text-gray-500 font-medium animate-fade-slide-up">
           {weddingDate}
         </p>
       </div>
 
       {/* 3. The Login Card */}
       <Card className="w-full max-w-[400px] shadow-lg">
-        <CardHeader className="text-center">
+        <CardHeader className="text-center text-heading">
           <CardTitle>Your RSVP Dashboard</CardTitle>
           <CardDescription>Sign in to manage your guest list.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-left block">Email</label>
+              <label className="text-sm text-heading font-medium text-left block">Email</label>
               <Input 
                 type="email" 
                 value={email} 
@@ -80,7 +109,7 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Password</label>
+                <label className="text-sm text-heading font-medium">Password</label>
               </div>
               <Input 
                 type="password" 

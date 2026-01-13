@@ -24,7 +24,7 @@ export function StatCard({ title, value, icon: Icon, delay = 0 }: StatCardProps)
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+          <p className="text-sm font-medium text-heading uppercase tracking-wider">
             {title}
           </p>
           <motion.p
@@ -41,8 +41,8 @@ export function StatCard({ title, value, icon: Icon, delay = 0 }: StatCardProps)
             {value}
           </motion.p>
         </div>
-        <div className="p-3 rounded-xl bg-primary/10">
-          <Icon className="w-6 h-6 text-primary" />
+        <div className="p-3 rounded-xl bg-accent/10">
+          <Icon className="w-6 h-6 text-accent" />
         </div>
       </div>
     </motion.div>

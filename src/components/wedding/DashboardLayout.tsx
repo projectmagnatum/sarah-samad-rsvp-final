@@ -14,7 +14,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <AppSidebar />
         <main className="flex-1 overflow-x-hidden">
           {/* Mobile Header */}
-          <div className="lg:hidden sticky top-0 z-40 bg-[#F5F5DC]/80 backdrop-blur-md border-b border-border/50 px-4 h-16 relative flex items-center">
+          <div className="lg:hidden sticky top-0 z-40 bg-theme/5 backdrop-blur-md border-b border-border/50 px-4 h-16 relative flex items-center">
             
             {/* Menu Icon (Left Aligned) */}
             {/* Added relative and z-10 to ensure it sits above the centered text layer if screens are small */}
@@ -25,11 +25,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {/* Centered Text Container */}
             {/* Using absolute positioning ensures this is dead-center relative to the screen, not the icon */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <h1 className="font-script text-2xl text-foreground leading-none">
-                Sarah & Samad
+              <h1 className="font-script text-2xl text-heading leading-none">
+                {import.meta.env.VITE_COUPLE_NAME}
               </h1>
-              <p className="text-[10px] font-sans font-medium uppercase tracking-[0.15em] text-muted-foreground mt-0.5">
-                2nd August 2026
+              <p className="text-[10px] font-sans font-medium uppercase tracking-[0.15em] text-muted-theme mt-0.5">
+                {import.meta.env.VITE_WEDDING_DATE}
               </p>
             </div>
             
