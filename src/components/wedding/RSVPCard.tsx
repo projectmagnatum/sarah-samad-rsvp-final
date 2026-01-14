@@ -60,7 +60,7 @@ export function RSVPCard({
       {viewMode === 'grid' ? (
         /* ================= GRID VIEW ================= */
         <>
-          <div className="p-6 pb-4 border-b border-border/50 bg-theme/5">
+          <div className="p-6 pb-4 border-b border-border/50 bg-theme/10">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
                 <h3 className="font-script text-2xl text-foreground break-words leading-tight">

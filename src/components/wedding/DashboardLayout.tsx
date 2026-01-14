@@ -14,7 +14,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <AppSidebar />
         <main className="flex-1 overflow-x-hidden">
           {/* Mobile Header */}
-          <div className="lg:hidden sticky top-0 z-40 bg-theme/5 backdrop-blur-md border-b border-border/50 px-4 h-16 relative flex items-center">
+          <div className="lg:hidden sticky top-0 z-40 bg-theme/10 backdrop-blur-md border-b border-border/50 px-4 h-16 relative flex items-center">
             
             {/* Menu Icon (Left Aligned) */}
             {/* Added relative and z-10 to ensure it sits above the centered text layer if screens are small */}

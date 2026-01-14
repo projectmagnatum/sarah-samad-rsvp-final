@@ -35,7 +35,7 @@ export function SearchBar({
           placeholder="Search guests by name..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-12 h-12 text-base bg-card/50 border-border/50 focus:border-primary/50 rounded-xl"
+          className="pl-12 h-12 text-base bg-card/50 border-border/50 focus:border-theme/50 rounded-xl"
         />
       </div>
 
@@ -74,7 +74,7 @@ export function SearchBar({
         {/* Download CSV */}
         <Button
           onClick={onDownloadCsv}
-          className="h-10 px-4 bg-accent text-primary-foreground hover:bg-theme/80 rounded-xl gap-2"
+          className="h-10 px-4 bg-theme text-button-text hover:bg-theme/80 rounded-xl gap-2"
         >
           <Download className="w-4 h-4" />
           <span className="hidden sm:inline">Download CSV</span>

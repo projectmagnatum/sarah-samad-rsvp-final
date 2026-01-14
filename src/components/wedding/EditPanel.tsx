@@ -3,7 +3,6 @@ import { RSVPEntry } from '@/types/rsvp';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -15,22 +14,20 @@ interface EditPanelProps {
 }
 
 export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
+  // REMOVED: email and message from initial state
   const [formData, setFormData] = useState({
     guestName: '',
-    email: '',
     attending: 'pending' as 'yes' | 'no' | 'pending',
     guestCount: 1,
-    message: '',
   });
 
   useEffect(() => {
     if (rsvp) {
       setFormData({
         guestName: rsvp.guestName,
-        email: rsvp.email,
+        // REMOVED: email and message mapping
         attending: rsvp.attending,
         guestCount: rsvp.guestCount,
-        message: rsvp.message,
       });
     }
   }, [rsvp]);
@@ -46,11 +43,10 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent 
         className="w-full sm:max-w-md bg-background border-l border-border"
-        // UPDATED: This prevents the auto-focus (and keyboard popup) on open
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <SheetHeader>
-          <SheetTitle className="font-script text-3xl text-foreground">
+          <SheetTitle className="font-script text-3xl text-heading">
             Edit Response
           </SheetTitle>
           <SheetDescription className="text-muted-foreground">
@@ -58,7 +54,7 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
           </SheetDescription>
         </SheetHeader>
 
-        <div className="mt-8 space-y-6">
+        <div className="mt-8 space-y-6 text-heading">
           <div className="space-y-2">
             <Label htmlFor="guestName">Guest Name</Label>
             <Input
@@ -69,16 +65,7 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="bg-card/50"
-            />
-          </div>
+          {/* REMOVED: Email Input Field */}
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -117,23 +104,15 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="message">Message</Label>
-            <Textarea
-              id="message"
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              className="bg-card/50 resize-none font-serif italic"
-            />
-          </div>
+          {/* REMOVED: Message Textarea Field */}
+          
         </div>
 
         <SheetFooter className="mt-8 gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">
             Cancel
           </Button>
-          <Button onClick={handleSave} className="flex-1 bg-primary text-primary-foreground">
+          <Button onClick={handleSave} className="flex-1 bg-theme text-button-text">
             Save Changes
           </Button>
         </SheetFooter>

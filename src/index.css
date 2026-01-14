@@ -13,6 +13,7 @@
     --theme: 100 30% 35%; /* hsl(100, 30%, 35%) */
     --muted-theme: 100 15% 40%; /* hsl(100, 15%, 40%) LIGHTER THAN THE THEME COLOUR */
     --accent: 38 70% 50%; /* hsl(38, 70%, 50%) */
+    --button-text: 45 50% 98%; /* hsl(45, 50%, 98%) */
     --rsvp-card-header: 126 21% 91%; /* hsl(126, 21%, 91%) */  
     --heading: 100 25% 20%; /* hsl(100, 25%, 20%) DARKER THAN THE THEME COLOUR */
     --hero-text: 0 0% 100%; /* hsl(0, 0%, 100%) */

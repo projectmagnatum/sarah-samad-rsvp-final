@@ -28,6 +28,7 @@ export default {
         "card-bg-login": "hsl(var(--card-bg-login))",
         "accent": "hsl(var(--accent))",
         "rsvp-card-header": "hsl(var(--rsvp-card-header))",
+        "button-text": "hsl(var(--button-text))",
 
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
