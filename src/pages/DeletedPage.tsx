@@ -52,7 +52,7 @@ export default function DeletedPage() {
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-foregroun">
+            <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-heading">
               DELETED
             </h1>
             <p className="mt-2 text-muted-foreground">

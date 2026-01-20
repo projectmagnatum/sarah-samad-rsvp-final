@@ -1,5 +1,6 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Heart, UserCheck, Inbox } from 'lucide-react';
+import { Users, Heart, UserCheck, Inbox, Utensils, AlertCircle } from 'lucide-react';
 import { useRSVP } from '@/contexts/RSVPContext';
 import { StatCard } from '@/components/wedding/StatCard';
 import { RSVPCard } from '@/components/wedding/RSVPCard';
@@ -7,6 +8,15 @@ import { RSVPCard } from '@/components/wedding/RSVPCard';
 export default function DashboardPage() {
   const { rsvps, stats } = useRSVP();
   
+  // 1. Calculate Dietary & Allergy Counts
+  const dietaryCount = useMemo(() => {
+    return rsvps.filter(r => r.dietaryRequirements && r.dietaryRequirements.trim().length > 0).length;
+  }, [rsvps]);
+
+  const allergyCount = useMemo(() => {
+    return rsvps.filter(r => r.allergies && r.allergies.trim().length > 0).length;
+  }, [rsvps]);
+
   // Get 3 most recent responses for preview
   const recentRsvps = rsvps.slice(0, 3);
 
@@ -27,8 +37,9 @@ export default function DashboardPage() {
         </p>
       </motion.div>
 
-      {/* Stats Cards */}
+      {/* Stats Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Standard Cards (Always Visible) */}
         <StatCard
           title="Total Entries" 
           value={stats.totalGuests}
@@ -47,6 +58,41 @@ export default function DashboardPage() {
           icon={Users}
           delay={0.3}
         />
+
+        {/* CONDITIONAL: Dietary Requests Card */}
+        {dietaryCount > 0 && (
+          <StatCard
+            title="Dietary Requests"
+            value={dietaryCount}
+            icon={Utensils}
+            delay={0.4}
+            // ADDED: Custom background color
+            className="bg-[#fcf1ce] border-[#f2c722]"
+            action={
+              <a href="/responses?filter=diet_allergy" className="text-sm font-bold text-accent hover:underline flex items-center gap-1">
+                See All &rarr;
+              </a>
+            }
+          />
+        )}
+
+        {/* CONDITIONAL: Allergies Card */}
+        {allergyCount > 0 && (
+          <StatCard
+            title="Allergies"
+            value={allergyCount}
+            icon={AlertCircle}
+            delay={0.5}
+            // ADDED: Custom background color. 
+            // Note: You might need to add 'text-white' here if the default text isn't readable against the dark pink.
+            className="bg-[#f6e3e3] border-[#e57373]" 
+            action={
+               <a href="/responses?filter=diet_allergy" className="text-sm font-bold text-accent hover:underline flex items-center gap-1">
+                See All &rarr;
+              </a>
+            }
+          />
+        )}
       </div>
 
       {/* Recent Responses Preview */}
@@ -68,7 +114,7 @@ export default function DashboardPage() {
         </div>
 
         {recentRsvps.length === 0 ? (
-          // NEW: Empty State Card
+          // Empty State Card
           <div className="glass-card rounded-2xl p-12 flex flex-col items-center justify-center text-center border-dashed border-2 border-border/50 bg-muted/20">
             <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center mb-4">
               <Inbox className="h-6 w-6 text-muted-foreground" />
@@ -89,7 +135,6 @@ export default function DashboardPage() {
                 rsvp={rsvp}
                 index={index}
                 viewMode="grid"
-                // No onEdit or onDelete passed here, so icons will be hidden
               />
             ))}
           </div>

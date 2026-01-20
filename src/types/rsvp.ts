@@ -9,9 +9,11 @@ export interface RSVPEntry {
   createdAt: Date;
   updatedAt: Date;
   isNew?: boolean;
-  
-  // This is the property typescript was complaining about:
   isDeleted?: boolean; 
+  
+  // UPDATED: Matching your database column names exactly
+  dietaryRequirements?: string; 
+  allergies?: string;
 }
 
 export type ViewMode = 'grid' | 'list';

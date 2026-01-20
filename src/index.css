@@ -12,17 +12,17 @@
     /* MAIN COLOURS  */
     --theme: 100 30% 35%; /* hsl(100, 30%, 35%) */
     --muted-theme: 100 15% 40%; /* hsl(100, 15%, 40%) LIGHTER THAN THE THEME COLOUR */
-    --accent: 38 70% 50%; /* hsl(38, 70%, 50%) */
-    --button-text: 45 50% 98%; /* hsl(45, 50%, 98%) */
-    --rsvp-card-header: 126 21% 91%; /* hsl(126, 21%, 91%) */  
+    --accent: 38 70% 50%; /* hsl(38, 70%, 50%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
+    --button-text: 45 50% 98%; /* hsl(45, 50%, 98%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
+    --rsvp-card-header: 126 21% 91%; /* hsl(126, 21%, 91%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
     --heading: 100 25% 20%; /* hsl(100, 25%, 20%) DARKER THAN THE THEME COLOUR */
-    --hero-text: 0 0% 100%; /* hsl(0, 0%, 100%) */
-    --border: 40 20% 85%; /* hsl(40, 20%, 85%) */
+    --hero-text: 0 0% 100%; /* hsl(0, 0%, 100%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
+    --border: 40 20% 85%; /* hsl(40, 20%, 85%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
     --test: 0 84.2% 60.2%; /* 0 84.2% 60.2%; /* hsl(0, 84.2%, 60.2%) */
-    --section-bg-venue-faq: 38 35% 88%; /* hsl(38, 35%, 88%) */
+    --section-bg-venue-faq: 38 35% 88%; /* hsl(38, 35%, 88%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
 
     /* Login Page */
-    --card-bg-login: 38 35% 88%; /* hsl(38, 35%, 88%) */
+    --card-bg-login: 38 35% 88%; /* hsl(38, 35%, 88%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
 
     
 

@@ -1,42 +1,79 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRSVP } from '@/contexts/RSVPContext';
 import { RSVPEntry, ViewMode } from '@/types/rsvp';
 import { RSVPCard } from '@/components/wedding/RSVPCard';
-import { SearchBar } from '@/components/wedding/SearchBar';
+import { SearchBar, FilterType } from '@/components/wedding/SearchBar';
 import { EditPanel } from '@/components/wedding/EditPanel';
 import { DeleteConfirmDialog } from '@/components/wedding/DeleteConfirmDialog';
 import { cn } from '@/lib/utils';
 
 export default function ResponsesPage() {
   const { rsvps, updateRsvp, deleteRsvp } = useRSVP();
+  const [searchParams] = useSearchParams();
+  
+  // Get filter from URL (e.g., ?filter=diet_allergy)
+  const filterFromUrl = searchParams.get('filter') as FilterType;
   
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  
+  // Initialize state from URL if present, otherwise default to 'all'
+  const [filterType, setFilterType] = useState<FilterType>(filterFromUrl || 'all');
   const [editingRsvp, setEditingRsvp] = useState<RSVPEntry | null>(null);
   const [deletingRsvp, setDeletingRsvp] = useState<RSVPEntry | null>(null);
 
-  // Filter RSVPs by search query
-  const filteredRsvps = useMemo(() => {
-    if (!searchQuery.trim()) return rsvps;
-    const query = searchQuery.toLowerCase();
-    return rsvps.filter(rsvp => 
-      rsvp.guestName.toLowerCase().includes(query)
-    );
-  }, [rsvps, searchQuery]);
+  // Sync state if the URL changes while the user is already on the page
+  useEffect(() => {
+    if (filterFromUrl) {
+      setFilterType(filterFromUrl);
+    }
+  }, [filterFromUrl]);
 
-  // Download CSV
+  // === REFINED FILTERING LOGIC ===
+  const filteredRsvps = useMemo(() => {
+    let data = [...rsvps]; // Use spread to ensure we're working with a fresh copy
+
+    // 1. Apply Dropdown/Tab Filter
+    if (filterType !== 'all') {
+      data = data.filter(rsvp => {
+        if (filterType === 'attending') return rsvp.attending === 'yes';
+        if (filterType === 'declined') return rsvp.attending === 'no';
+        if (filterType === 'pending') return rsvp.attending === 'pending';
+        if (filterType === 'diet_allergy') {
+          const hasDiet = rsvp.dietaryRequirements && rsvp.dietaryRequirements.trim().length > 0;
+          const hasAllergy = rsvp.allergies && rsvp.allergies.trim().length > 0;
+          return hasDiet || hasAllergy;
+        }
+        return true;
+      });
+    }
+
+    // 2. Apply Search Query Filter (Checks Guest Name AND Email)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      data = data.filter(rsvp => {
+        const nameMatch = (rsvp.guestName?.toLowerCase() || '').includes(query);
+        const emailMatch = (rsvp.email?.toLowerCase() || '').includes(query);
+        return nameMatch || emailMatch;
+      });
+    }
+
+    return data;
+  }, [rsvps, searchQuery, filterType]);
+
   const handleDownloadCsv = () => {
-    // REMOVED: 'Dietary Requirements' from headers
-    const headers = ['Guest Name', 'Email', 'Status', 'Guest Count', 'Message', 'Date'];
+    const headers = ['Guest Name', 'Email', 'Status', 'Guest Count', 'Message', 'Dietary Req', 'Allergies', 'Date'];
     
-    const rows = rsvps.map(rsvp => [
-      rsvp.guestName,
-      rsvp.email,
-      rsvp.attending,
-      rsvp.guestCount.toString(),
-      `"${rsvp.message.replace(/"/g, '""')}"`,
-      // REMOVED: rsvp.dietaryRequirements
+    const rows = filteredRsvps.map(rsvp => [
+      rsvp.guestName || '',
+      rsvp.email || '',
+      rsvp.attending || '',
+      rsvp.guestCount?.toString() || '0',
+      `"${(rsvp.message || '').replace(/"/g, '""')}"`,
+      `"${(rsvp.dietaryRequirements || '').replace(/"/g, '""')}"`,
+      `"${(rsvp.allergies || '').replace(/"/g, '""')}"`,
       new Date(rsvp.createdAt).toLocaleDateString('en-GB'),
     ]);
 
@@ -44,7 +81,7 @@ export default function ResponsesPage() {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `wedding-rsvps-${new Date().toISOString().split('T')[0]}.csv`;
+    link.download = `wedding-rsvps-${filterType}-${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
   };
 
@@ -63,15 +100,13 @@ export default function ResponsesPage() {
 
   return (
     <div className="min-h-screen p-6 sm:p-8 lg:p-12">
-      {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        {/* UPDATED: Cleaned up font classes and fixed typo */}
-        <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-foregroun">
+        <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-heading uppercase tracking-tight">
           RESPONSES
         </h1>
         <p className="mt-2 text-muted-foreground">
@@ -79,16 +114,16 @@ export default function ResponsesPage() {
         </p>
       </motion.div>
 
-      {/* Search & Actions */}
       <SearchBar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         viewMode={viewMode}
         onViewModeChange={setViewMode}
         onDownloadCsv={handleDownloadCsv}
+        filterType={filterType}
+        onFilterChange={setFilterType}
       />
 
-      {/* RSVP Grid/List */}
       <div className={cn(
         viewMode === 'grid' 
           ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
@@ -108,20 +143,22 @@ export default function ResponsesPage() {
         </AnimatePresence>
       </div>
 
-      {/* Empty State */}
       {filteredRsvps.length === 0 && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-center py-20"
         >
-          <p className="text-lg text-muted-foreground">
-            {searchQuery ? 'No guests found matching your search.' : 'No responses yet.'}
+          <p className="text-lg text-muted-foreground font-medium">
+            {searchQuery 
+              ? `No guests found matching "${searchQuery}"` 
+              : filterType !== 'all'
+                ? `No guests found for this filter.`
+                : 'No responses yet.'}
           </p>
         </motion.div>
       )}
 
-      {/* Edit Panel */}
       <EditPanel
         rsvp={editingRsvp}
         isOpen={!!editingRsvp}
@@ -129,7 +166,6 @@ export default function ResponsesPage() {
         onSave={updateRsvp}
       />
 
-      {/* Delete Confirmation */}
       <DeleteConfirmDialog
         rsvp={deletingRsvp}
         isOpen={!!deletingRsvp}
