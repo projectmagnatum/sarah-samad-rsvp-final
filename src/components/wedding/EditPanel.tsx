@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 interface EditPanelProps {
   rsvp: RSVPEntry | null;
@@ -21,6 +22,7 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
     guestCount: 1,
     dietaryRequirements: '',
     allergies: '',
+    notes: '',
   });
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
         guestCount: rsvp.guestCount || 0,
         dietaryRequirements: rsvp.dietaryRequirements || '',
         allergies: rsvp.allergies || '',
+        notes: rsvp.notes || '',
       });
     }
   }, [rsvp]);
@@ -57,19 +60,19 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
         <div className="mt-8 space-y-6 text-heading pb-8">
           <div className="space-y-2">
             <Label htmlFor="guestName">Guest Name</Label>
-            <Input id="guestName" value={formData.guestName} onChange={(e) => setFormData(p => ({ ...p, guestName: e.target.value }))} className="bg-card/50 font-bold" />
+            <Input id="guestName" value={formData.guestName} onChange={(e) => setFormData(p => ({ ...p, guestName: e.target.value }))} className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] font-bold" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))} className="bg-card/50 text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. kate@example.com" />
+            <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))} className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. kate@example.com" />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Status</Label>
               <Select value={formData.attending} onValueChange={(v: any) => setFormData(p => ({ ...p, attending: v }))}>
-                <SelectTrigger className="bg-card/50"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)]"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="yes">Attending</SelectItem>
                   <SelectItem value="no">Declined</SelectItem>
@@ -85,19 +88,31 @@ export function EditPanel({ rsvp, isOpen, onClose, onSave }: EditPanelProps) {
                 value={formData.guestCount} 
                 onFocus={(e) => e.target.select()}
                 onChange={(e) => setFormData(p => ({ ...p, guestCount: parseInt(e.target.value, 10) || 0 }))} 
-                className="bg-card/50 text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" 
+                className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" 
               />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="dietaryRequirements">Dietary Requests</Label>
-            <Input id="dietaryRequirements" value={formData.dietaryRequirements} onChange={(e) => setFormData(p => ({ ...p, dietaryRequirements: e.target.value }))} className="bg-card/50 text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. Vegetarian..." />
+            <Input id="dietaryRequirements" value={formData.dietaryRequirements} onChange={(e) => setFormData(p => ({ ...p, dietaryRequirements: e.target.value }))} className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. Vegetarian..." />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="allergies">Allergies</Label>
-            <Input id="allergies" value={formData.allergies} onChange={(e) => setFormData(p => ({ ...p, allergies: e.target.value }))} className="bg-card/50 text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. Nuts..." />
+            <Input id="allergies" value={formData.allergies} onChange={(e) => setFormData(p => ({ ...p, allergies: e.target.value }))} className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] text-theme placeholder:text-gray-400 font-bold placeholder:font-normal" placeholder="e.g. Nuts..." />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="notes">Notes</Label>
+            <Textarea
+              id="notes"
+              value={formData.notes}
+              onChange={(e) => setFormData(p => ({ ...p, notes: e.target.value }))}
+              className="bg-[color-mix(in_srgb,var(--card)_50%,transparent)] text-theme placeholder:text-gray-400 font-normal resize-none"
+              placeholder="Internal notes about this guest (guests cannot see this)"
+              rows={3}
+            />
           </div>
         </div>
 

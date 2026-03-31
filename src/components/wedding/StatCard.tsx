@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 interface StatCardProps {
@@ -10,10 +11,11 @@ interface StatCardProps {
   delay?: number;
   action?: ReactNode;
   className?: string;
+  href?: string;
 }
 
-export function StatCard({ title, value, icon: Icon, delay = 0, action, className }: StatCardProps) {
-  return (
+export function StatCard({ title, value, icon: Icon, delay = 0, action, className, href }: StatCardProps) {
+  const card = (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -24,7 +26,7 @@ export function StatCard({ title, value, icon: Icon, delay = 0, action, classNam
         delay,
       }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className={cn("glass-card rounded-2xl p-6 sm:p-8 relative", className)}
+      className={cn("glass-card rounded-2xl p-6 sm:p-8 relative", href && "cursor-pointer", className)}
     >
       <div className="flex justify-between h-full">
         {/* LEFT SIDE: Title & Value */}
@@ -32,7 +34,7 @@ export function StatCard({ title, value, icon: Icon, delay = 0, action, classNam
           <p className="text-sm font-medium text-heading uppercase tracking-wider relative z-10">
             {title}
           </p>
-          
+
           <motion.p
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -47,10 +49,10 @@ export function StatCard({ title, value, icon: Icon, delay = 0, action, classNam
             {value}
           </motion.p>
         </div>
-        
+
         {/* RIGHT SIDE: Icon & Link */}
         <div className="flex flex-col items-end justify-between ml-4">
-          <div className="p-3 rounded-xl bg-accent/10 relative z-10">
+          <div className="p-3 rounded-xl bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] relative z-10">
             <Icon className="w-6 h-6 text-accent" />
           </div>
 
@@ -63,4 +65,10 @@ export function StatCard({ title, value, icon: Icon, delay = 0, action, classNam
       </div>
     </motion.div>
   );
+
+  if (href) {
+    return <Link to={href} className="block">{card}</Link>;
+  }
+
+  return card;
 }

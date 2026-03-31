@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,21 @@ export default function LoginPage() {
 
   const coupleName = import.meta.env.VITE_COUPLE_NAME;
   const weddingDate = import.meta.env.VITE_WEDDING_DATE;
+
+  const [typedDate, setTypedDate] = useState('');
+  useEffect(() => {
+    // Name fades over 3s with no delay → start typewriter at 3s
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        setTypedDate(weddingDate.slice(0, i));
+        if (i >= weddingDate.length) clearInterval(interval);
+      }, 80);
+      return () => clearInterval(interval);
+    }, 1500);
+    return () => clearTimeout(startDelay);
+  }, [weddingDate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,28 +69,11 @@ export default function LoginPage() {
             to { opacity: 1; }
           }
 
-          @keyframes fadeSlideUp {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
           .animate-fade-in {
-            opacity: 0; 
+            opacity: 0;
             animation: fadeIn 3s ease-out forwards;
-            animation-delay: 1s; /* 1 second delay for Sarah & Samad */
           }
 
-          .animate-fade-slide-up {
-            opacity: 0; 
-            animation: fadeSlideUp 1.5s ease-out forwards;
-            animation-delay: 1.8s; /* Starts as the name is mid-fade */
-          }
         `}
       </style>
 
@@ -84,8 +82,8 @@ export default function LoginPage() {
         <h1 className="font-great-vibes text-5xl md:text-6xl text-gray-800 text-heading animate-fade-in">
           {coupleName}
         </h1>
-        <p className="text-sm md:text-base text-muted-theme font-sans uppercase tracking-[0.2em] text-gray-500 font-medium animate-fade-slide-up">
-          {weddingDate}
+        <p className="text-sm md:text-base text-muted-theme font-sans uppercase tracking-[0.2em] text-gray-500 font-medium">
+          {typedDate}
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
-import { Pencil, Trash2, RotateCcw, Users } from 'lucide-react';
+import { Pencil, Trash2, RotateCcw, Users, StickyNote } from 'lucide-react';
 import { RSVPEntry } from '@/types/rsvp';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -36,7 +36,7 @@ export function RSVPCard({ rsvp, index, onEdit, onDelete, onRestore, isDeletedVi
     >
       {viewMode === 'grid' ? (
         <>
-          <div className="p-6 pb-4 border-b border-border/50 bg-theme/10">
+          <div className="p-6 pb-4 border-b border-[color-mix(in_srgb,var(--border)_50%,transparent)] bg-[color-mix(in_srgb,var(--theme)_10%,transparent)]">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
                 <h3 className="font-script text-2xl text-foreground break-words leading-tight">{rsvp.guestName}</h3>
@@ -50,7 +50,7 @@ export function RSVPCard({ rsvp, index, onEdit, onDelete, onRestore, isDeletedVi
             </div>
           </div>
           <div className="p-6 pt-4">
-            <p className="font-serif italic text-lg text-foreground/90 leading-relaxed min-h-[4.5rem] mb-4">"{rsvp.message}"</p>
+            <p className="font-serif italic text-lg text-[color-mix(in_srgb,var(--foreground)_90%,transparent)] leading-relaxed min-h-[4.5rem] mb-4">"{rsvp.message}"</p>
             {(rsvp.email || rsvp.dietaryRequirements || rsvp.allergies) && (
               <div className="flex flex-col gap-2 pt-2 items-start">
                 {rsvp.email && (
@@ -70,8 +70,14 @@ export function RSVPCard({ rsvp, index, onEdit, onDelete, onRestore, isDeletedVi
                 )}
               </div>
             )}
+            {rsvp.notes && (
+              <div className="mt-3 flex items-start gap-2 rounded-lg border border-border px-3 py-2.5 text-sm text-muted-foreground">
+                <StickyNote className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />
+                <p className="whitespace-pre-wrap leading-relaxed">{rsvp.notes}</p>
+              </div>
+            )}
           </div>
-          <div className="px-6 py-4 bg-muted/30 flex items-center justify-between border-t border-border/50">
+          <div className="px-6 py-4 bg-[color-mix(in_srgb,var(--muted)_30%,transparent)] flex items-center justify-between border-t border-[color-mix(in_srgb,var(--border)_50%,transparent)]">
             <time className="text-sm text-muted-foreground">{format(new Date(rsvp.createdAt), 'dd/MM/yyyy')}</time>
             <div className="flex items-center gap-1">
               {isDeletedView ? (
@@ -107,9 +113,15 @@ export function RSVPCard({ rsvp, index, onEdit, onDelete, onRestore, isDeletedVi
               )}
             </div>
           )}
+          {rsvp.notes && (
+            <div className="flex items-start gap-2 rounded-lg border border-border px-3 py-2 text-xs text-muted-foreground w-full">
+              <StickyNote className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+              <p className="whitespace-pre-wrap leading-relaxed">{rsvp.notes}</p>
+            </div>
+          )}
           <div className="flex flex-wrap items-center justify-center gap-3 w-full">
             <Badge variant="outline" className={cn("shrink-0 text-xs h-6", status.className)}>{status.label}</Badge>
-            {rsvp.attending === 'yes' && <div className="flex items-center gap-1 text-muted-foreground shrink-0 bg-muted/20 px-2 py-0.5 rounded-full"><Users className="w-3.5 h-3.5" /><span className="text-sm font-medium">{rsvp.guestCount}</span></div>}
+            {rsvp.attending === 'yes' && <div className="flex items-center gap-1 text-muted-foreground shrink-0 bg-[color-mix(in_srgb,var(--muted)_20%,transparent)] px-2 py-0.5 rounded-full"><Users className="w-3.5 h-3.5" /><span className="text-sm font-medium">{rsvp.guestCount}</span></div>}
             <time className="text-xs text-muted-foreground shrink-0 border-l border-border pl-3 ml-1">{format(new Date(rsvp.createdAt), 'dd/MM/yyyy')}</time>
             <div className="flex items-center gap-1 ml-2 pl-2 border-l border-border">
               {isDeletedView ? (

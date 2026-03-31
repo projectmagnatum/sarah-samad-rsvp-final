@@ -30,7 +30,7 @@ export function DeleteConfirmDialog({
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent className="bg-card border-border">
         <AlertDialogHeader>
-          <div className="mx-auto w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
+          <div className="mx-auto w-12 h-12 rounded-full bg-[color-mix(in_srgb,var(--destructive)_10%,transparent)] flex items-center justify-center mb-4">
             <AlertTriangle className="w-6 h-6 text-destructive" />
           </div>
           <AlertDialogTitle className="text-center font-script text-2xl">
@@ -52,7 +52,7 @@ export function DeleteConfirmDialog({
           <AlertDialogCancel className="flex-1">Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => rsvp && onConfirm(rsvp.id)}
-            className="flex-1 bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            className="flex-1 bg-destructive text-destructive-foreground hover:bg-[color-mix(in_srgb,var(--destructive)_90%,transparent)]"
           >
             {isPermanent ? 'Delete Forever' : 'Delete'}
           </AlertDialogAction>

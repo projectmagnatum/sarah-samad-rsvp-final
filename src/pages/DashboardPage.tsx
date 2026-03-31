@@ -41,22 +41,25 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {/* Standard Cards (Always Visible) */}
         <StatCard
-          title="Total Entries" 
+          title="Total Entries"
           value={stats.totalGuests}
-          icon={UserCheck} 
+          icon={UserCheck}
           delay={0.1}
+          href="/responses"
         />
         <StatCard
           title="Joyfully Accepting"
           value={stats.attending}
           icon={Heart}
           delay={0.2}
+          href="/responses?filter=attending"
         />
         <StatCard
           title="Total Headcount"
           value={stats.totalHeadcount}
           icon={Users}
           delay={0.3}
+          href="/responses"
         />
 
         {/* CONDITIONAL: Dietary Requests Card */}
@@ -115,7 +118,7 @@ export default function DashboardPage() {
 
         {recentRsvps.length === 0 ? (
           // Empty State Card
-          <div className="glass-card rounded-2xl p-12 flex flex-col items-center justify-center text-center border-dashed border-2 border-border/50 bg-muted/20">
+          <div className="glass-card rounded-2xl p-12 flex flex-col items-center justify-center text-center border-dashed border-2 border-[color-mix(in_srgb,var(--border)_50%,transparent)] bg-[color-mix(in_srgb,var(--muted)_20%,transparent)]">
             <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center mb-4">
               <Inbox className="h-6 w-6 text-muted-foreground" />
             </div>

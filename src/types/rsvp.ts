@@ -12,8 +12,9 @@ export interface RSVPEntry {
   isDeleted?: boolean; 
   
   // UPDATED: Matching your database column names exactly
-  dietaryRequirements?: string; 
+  dietaryRequirements?: string;
   allergies?: string;
+  notes?: string;
 }
 
 export type ViewMode = 'grid' | 'list';

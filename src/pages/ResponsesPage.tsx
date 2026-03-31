@@ -106,9 +106,14 @@ export default function ResponsesPage() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-heading uppercase tracking-tight">
-          RESPONSES
-        </h1>
+        <div className="flex items-center gap-4">
+          <h1 className="font-sans font-bold text-[18px] sm:text-5xl text-heading uppercase tracking-tight">
+            RESPONSES
+          </h1>
+          <span className="flex items-center justify-center min-w-[2rem] h-8 sm:h-10 px-2.5 rounded-lg bg-accent text-white text-sm sm:text-base font-semibold">
+            {filteredRsvps.length}
+          </span>
+        </div>
         <p className="mt-2 text-muted-foreground">
           Manage all your guest responses in one place.
         </p>

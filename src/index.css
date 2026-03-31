@@ -10,127 +10,125 @@
   :root {
     /* U's Colour Scheme */
     /* MAIN COLOURS  */
-    --theme: 100 30% 35%; /* hsl(100, 30%, 35%) */
-    --muted-theme: 100 15% 40%; /* hsl(100, 15%, 40%) LIGHTER THAN THE THEME COLOUR */
-    --accent: 38 70% 50%; /* hsl(38, 70%, 50%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-    --button-text: 45 50% 98%; /* hsl(45, 50%, 98%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-    --rsvp-card-header: 126 21% 91%; /* hsl(126, 21%, 91%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-    --heading: 100 25% 20%; /* hsl(100, 25%, 20%) DARKER THAN THE THEME COLOUR */
-    --hero-text: 0 0% 100%; /* hsl(0, 0%, 100%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-    --border: 40 20% 85%; /* hsl(40, 20%, 85%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-    --test: 0 84.2% 60.2%; /* 0 84.2% 60.2%; /* hsl(0, 84.2%, 60.2%) */
-    --section-bg-venue-faq: 38 35% 88%; /* hsl(38, 35%, 88%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
+    --theme: #81250e;
+    --muted-theme: #991a1a;
+    --accent: #D99726;
+    --button-text: #FCFBF7;
+    --rsvp-card-header: #E3EDE4;
+    --heading: #5e0303;
+    --hero-text: #FFFFFF;
+    --border: #E0DBD1;
+    --test: #EF4444;
+    --section-bg-venue-faq: #e4d1d1;
 
     /* Login Page */
-    --card-bg-login: 38 35% 88%; /* hsl(38, 35%, 88%) LEAVE AS IS, DO NOT CHANGE UNLESS CLIENT REQUESTS */
-
-    
+    --card-bg-login: #EBE3D6;
 
     /* Soft cream background palette */
-    --background: 45 50% 98%;
-    --foreground: 220 15% 15%;
+    --background: #FCFBF7;
+    --foreground: #21242C;
 
     /* Cards with subtle warmth */
-    --card: 40 40% 97%;
-    --card-foreground: 220 15% 15%;
+    --card: #FAF8F4;
+    --card-foreground: #21242C;
 
     /* Popover matching cards */
-    --popover: 40 40% 99%;
-    --popover-foreground: 220 15% 15%;
+    --popover: #FDFDFB;
+    --popover-foreground: #21242C;
 
     /* Gold/Champagne primary */
-    --primary: 38 70% 50%; /* hsl(38, 70%, 50%) */
-    --primary-foreground: 45 50% 98%; /* hsl(45, 50%, 98%) */
+    --primary: #D99726;
+    --primary-foreground: #FCFBF7;
 
     /* Soft champagne secondary */
-    --secondary: 38 30% 92%; /* hsl(38, 30%, 92%) */
-    --secondary-foreground: 220 15% 20%; /* hsl(220, 15%, 20%) */
+    --secondary: #F1ECE4;
+    --secondary-foreground: #2D3139;
 
     /* Muted tones */
-    --muted: 40 20% 94%; /* hsl(40, 20%, 94%) */
-    --muted-foreground: 220 10% 45%; /* hsl(220, 10%, 45%) */
+    --muted: #F3F1ED;
+    --muted-foreground: #676F7E;
 
     /* Accent - rose gold hint */
-    --accent-foreground: 220 15% 15%; /* hsl(220, 15%, 15%) */
+    --accent-foreground: #21242C;
 
     /* Semantic colors */
-    --destructive: 0 65% 55%; /* hsl(0, 65%, 55%) */
-    --destructive-foreground: 0 0% 100%; /* hsl(0, 0%, 100%) */
+    --destructive: #D74242;
+    --destructive-foreground: #FFFFFF;
 
-    --success: 142 55% 45%; /* hsl(142, 55%, 45%) */
-    --success-foreground: 0 0% 100%; /* hsl(0, 0%, 100%) */
+    --success: #34B262;
+    --success-foreground: #FFFFFF;
 
-    --border: 38 25% 88%; /* hsl(38, 25%, 88%) */
-    --input: 38 20% 90%; /* hsl(38, 20%, 90%) */
-    --ring: 38 70% 50%; /* hsl(38, 70%, 50%) */
+    --border: #E8E2D9;
+    --input: #EBE7E0;
+    --ring: #D99726;
 
-    --radius: 0.75rem; /* 12px border radius */
+    --radius: 0.75rem;
 
     /* Glassmorphism */
-    --glass-bg: 40 40% 99% / 0.7; /* hsl(40, 40%, 99%) with 70% opacity */
-    --glass-border: 38 30% 85% / 0.5; /* hsl(38, 30%, 85%) with 50% opacity */
-    --glass-shadow: 0 8px 32px hsla(38, 30%, 50%, 0.08);
+    --glass-bg: #FDFDFBB3;
+    --glass-border: #E4DCCD80;
+    --glass-shadow: 0 8px 32px rgba(166, 138, 89, 0.08);
 
     /* Glow effect for new items */
-    --glow-gold: 0 0 20px hsla(38, 70%, 50%, 0.4);
+    --glow-gold: 0 0 20px rgba(217, 151, 38, 0.4);
 
     /* Sidebar */
-    --sidebar-background: 40 35% 96%;
-    --sidebar-foreground: 220 15% 25%;
-    --sidebar-primary: 38 70% 50%;
-    --sidebar-primary-foreground: 45 50% 98%;
-    --sidebar-accent: 38 25% 92%;
-    --sidebar-accent-foreground: 220 15% 15%;
-    --sidebar-border: 38 20% 90%;
-    --sidebar-ring: 38 70% 50%;
+    --sidebar-background: #F8F6F1;
+    --sidebar-foreground: #363D49;
+    --sidebar-primary: #D99726;
+    --sidebar-primary-foreground: #FCFBF7;
+    --sidebar-accent: #F0ECE6;
+    --sidebar-accent-foreground: #21242C;
+    --sidebar-border: #EBE7E0;
+    --sidebar-ring: #D99726;
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 40 30% 95%;
+    --background: #14181F;
+    --foreground: #F6F4EE;
 
-    --card: 220 18% 12%;
-    --card-foreground: 40 30% 95%;
+    --card: #191D24;
+    --card-foreground: #F6F4EE;
 
-    --popover: 220 18% 12%;
-    --popover-foreground: 40 30% 95%;
+    --popover: #191D24;
+    --popover-foreground: #F6F4EE;
 
-    --primary: 38 65% 55%;
-    --primary-foreground: 220 20% 10%;
+    --primary: #D7A042;
+    --primary-foreground: #14181F;
 
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 40 30% 90%;
+    --secondary: #272C35;
+    --secondary-foreground: #EDE8DE;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 40 20% 65%;
+    --muted: #2D3139;
+    --muted-foreground: #B8AC94;
 
-    --accent: 220 15% 18%;
-    --accent-foreground: 40 30% 95%; /* hsl(40, 30%, 95%) */
+    --accent: #272C35;
+    --accent-foreground: #F6F4EE;
 
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: #B82E2E;
+    --destructive-foreground: #FFFFFF;
 
-    --success: 142 50% 40%;
-    --success-foreground: 0 0% 100%;
+    --success: #339958;
+    --success-foreground: #FFFFFF;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 38 65% 55%;
+    --border: #2D3139;
+    --input: #2D3139;
+    --ring: #D7A042;
 
-    --glass-bg: 220 18% 12% / 0.8;
-    --glass-border: 220 15% 25% / 0.5;
-    --glass-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+    --glass-bg: #191D24CC;
+    --glass-border: #363D4980;
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
-    --glow-gold: 0 0 20px hsla(38, 65%, 55%, 0.3);
+    --glow-gold: 0 0 20px rgba(215, 160, 66, 0.3);
 
-    --sidebar-background: 220 18% 11%;
-    --sidebar-foreground: 40 30% 90%;
-    --sidebar-primary: 38 65% 55%;
-    --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 220 15% 16%;
-    --sidebar-accent-foreground: 40 30% 95%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 38 65% 55%;
+    --sidebar-background: #171A21;
+    --sidebar-foreground: #EDE8DE;
+    --sidebar-primary: #D7A042;
+    --sidebar-primary-foreground: #14181F;
+    --sidebar-accent: #23272F;
+    --sidebar-accent-foreground: #F6F4EE;
+    --sidebar-border: #272C35;
+    --sidebar-ring: #D7A042;
   }
 }
 
@@ -148,7 +146,7 @@
 @layer components {
   /* Glass card effect */
   .glass-card {
-    @apply bg-card/70 backdrop-blur-md border border-border/50 shadow-lg;
+    @apply bg-[color-mix(in_srgb,var(--card)_70%,transparent)] backdrop-blur-md border border-[color-mix(in_srgb,var(--border)_50%,transparent)] shadow-lg;
   }
 
   /* Script font for headers */
@@ -174,11 +172,11 @@
 
   /* Status badges */
   .badge-attending {
-    @apply bg-success/15 text-success border border-success/30;
+    @apply bg-[color-mix(in_srgb,var(--success)_15%,transparent)] text-success border border-[color-mix(in_srgb,var(--success)_30%,transparent)];
   }
 
   .badge-declined {
-    @apply bg-destructive/15 text-destructive border border-destructive/30;
+    @apply bg-[color-mix(in_srgb,var(--destructive)_15%,transparent)] text-destructive border border-[color-mix(in_srgb,var(--destructive)_30%,transparent)];
   }
 
   .badge-pending {
@@ -193,19 +191,19 @@
   }
 
   .scrollbar-elegant::-webkit-scrollbar-track {
-    @apply bg-muted/50 rounded-full;
+    @apply bg-[color-mix(in_srgb,var(--muted)_50%,transparent)] rounded-full;
   }
 
   .scrollbar-elegant::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full hover:bg-primary/50 transition-colors;
+    @apply bg-border rounded-full hover:bg-[color-mix(in_srgb,var(--primary)_50%,transparent)] transition-colors;
   }
 }
 
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px hsla(38, 70%, 50%, 0.4);
+    box-shadow: 0 0 20px rgba(217, 151, 38, 0.4);
   }
   50% {
-    box-shadow: 0 0 30px hsla(38, 70%, 50%, 0.6);
+    box-shadow: 0 0 30px rgba(217, 151, 38, 0.6);
   }
 }

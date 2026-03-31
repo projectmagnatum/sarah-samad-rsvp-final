@@ -41,14 +41,14 @@ export function SearchBar({
           placeholder="Search guests by name..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-12 h-12 text-base bg-card/50 border-border/50 focus:border-theme/50 rounded-xl w-full"
+          className="pl-12 h-12 text-base bg-[color-mix(in_srgb,var(--card)_50%,transparent)] border-[color-mix(in_srgb,var(--border)_50%,transparent)] focus:border-[color-mix(in_srgb,var(--theme)_50%,transparent)] rounded-xl w-full"
         />
       </div>
 
       {/* 2. Actions Toolbar */}
       <div className="flex flex-row items-center w-full">
         <div className="flex items-center gap-2">
-          <div className="flex items-center rounded-xl bg-muted/50 p-1 shrink-0">
+          <div className="flex items-center rounded-xl bg-[color-mix(in_srgb,var(--muted)_50%,transparent)] p-1 shrink-0">
             <Button
               variant="ghost"
               size="sm"
@@ -79,7 +79,7 @@ export function SearchBar({
 
           <Button
             onClick={onDownloadCsv}
-            className="h-10 px-4 bg-theme text-button-text hover:bg-theme/80 rounded-xl gap-2 shrink-0"
+            className="h-10 px-4 bg-theme text-button-text hover:bg-[color-mix(in_srgb,var(--theme)_80%,transparent)] rounded-xl gap-2 shrink-0"
           >
             <Download className="w-4 h-4" />
             <span className="hidden sm:inline">Download CSV</span>
@@ -101,7 +101,7 @@ export function SearchBar({
               // ADDED: This removes the focus/active highlight after selection
               e.target.blur();
             }}
-            className="h-full w-full appearance-none rounded-xl border border-input bg-background pl-9 pr-8 py-2 text-sm ring-offset-background focus-visible:outline-none focus:ring-0 focus:ring-offset-0 cursor-pointer hover:bg-accent/5 transition-colors"
+            className="h-full w-full appearance-none rounded-xl border border-input bg-background pl-9 pr-8 py-2 text-sm ring-offset-background focus-visible:outline-none focus:ring-0 focus:ring-offset-0 cursor-pointer hover:bg-[color-mix(in_srgb,var(--accent)_5%,transparent)] transition-colors"
           >
             <option value="all">All Entries</option>
             <option value="attending">Attending</option>

@@ -1,6 +1,7 @@
-import { Home, MessageSquare, Trash2, Heart } from 'lucide-react';
+import { Home, MessageSquare, Trash2, Heart, LogOut } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import { useLocation } from 'react-router-dom';
+import { supabase } from '@/lib/supabase';
 import {
   Sidebar,
   SidebarContent,
@@ -27,11 +28,11 @@ export function AppSidebar() {
   const { setOpenMobile } = useSidebar();
 
   return (
-    <Sidebar className="border-r border-border/50">
-      <SidebarHeader className="p-6 border-b border-border/50">
+    <Sidebar className="border-r border-[color-mix(in_srgb,var(--border)_50%,transparent)]">
+      <SidebarHeader className="p-6 border-b border-[color-mix(in_srgb,var(--border)_50%,transparent)]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Heart className="w-5 h-5 text-heading fill-theme/10" />
+          <div className="w-10 h-10 rounded-full bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] flex items-center justify-center">
+            <Heart className="w-5 h-5 text-heading fill-[color-mix(in_srgb,var(--theme)_10%,transparent)]" />
           </div>
           <div>
             <h1 className="font-script text-2xl text-heading leading-none">
@@ -58,7 +59,7 @@ export function AppSidebar() {
                         className={cn(
                           "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
                           isActive 
-                            ? "bg-primary/10 text-primary" 
+                            ? "bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-primary"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground"
                         )}
                         activeClassName=""
@@ -78,8 +79,15 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4 border-t border-border/50">
-        <p className="text-xs text-muted-theme text-center">
+      <SidebarFooter className="p-4 border-t border-[color-mix(in_srgb,var(--border)_50%,transparent)]">
+        <button
+          onClick={() => supabase.auth.signOut()}
+          className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-muted-foreground hover:bg-[color-mix(in_srgb,var(--destructive)_10%,transparent)] hover:text-destructive transition-all duration-200"
+        >
+          <LogOut className="w-5 h-5" />
+          <span className="font-medium">Log Out</span>
+        </button>
+        <p className="text-xs text-muted-theme text-center mt-3">
           {import.meta.env.VITE_WEDDING_DATE}
         </p>
       </SidebarFooter>

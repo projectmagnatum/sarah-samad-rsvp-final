@@ -64,7 +64,7 @@ export default function DeletedPage() {
             <Button
               variant="outline"
               onClick={() => setShowDeleteAllDialog(true)}
-              className="text-destructive hover:text-destructive hover:bg-destructive/10 border-destructive/30 gap-2"
+              className="text-destructive hover:text-destructive hover:bg-[color-mix(in_srgb,var(--destructive)_10%,transparent)] border-[color-mix(in_srgb,var(--destructive)_30%,transparent)] gap-2"
             >
               <Trash2 className="w-4 h-4" />
               Delete All Permanently
@@ -91,7 +91,7 @@ export default function DeletedPage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 + 0.3 }}
                 onClick={() => handlePermanentDelete(rsvp)}
-                className="absolute top-4 right-4 p-2 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors"
+                className="absolute top-4 right-4 p-2 rounded-lg bg-[color-mix(in_srgb,var(--destructive)_10%,transparent)] text-destructive hover:bg-[color-mix(in_srgb,var(--destructive)_20%,transparent)] transition-colors"
               >
                 <Trash2 className="w-4 h-4" />
               </motion.button>
@@ -132,7 +132,7 @@ export default function DeletedPage() {
       <AlertDialog open={showDeleteAllDialog} onOpenChange={setShowDeleteAllDialog}>
         <AlertDialogContent className="bg-card border-border">
           <AlertDialogHeader>
-            <div className="mx-auto w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
+            <div className="mx-auto w-12 h-12 rounded-full bg-[color-mix(in_srgb,var(--destructive)_10%,transparent)] flex items-center justify-center mb-4">
               <AlertTriangle className="w-6 h-6 text-destructive" />
             </div>
             <AlertDialogTitle className="text-center font-script text-2xl">
@@ -146,7 +146,7 @@ export default function DeletedPage() {
             <AlertDialogCancel className="flex-1">Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteAll}
-              className="flex-1 bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="flex-1 bg-destructive text-destructive-foreground hover:bg-[color-mix(in_srgb,var(--destructive)_90%,transparent)]"
             >
               Delete All Forever
             </AlertDialogAction>

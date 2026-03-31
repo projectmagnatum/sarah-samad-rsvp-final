@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase, CURRENT_WEDDING_ID } from '@/lib/supabase';
 import { RSVPEntry } from '@/types/rsvp';
 
 interface RSVPContextType {
@@ -42,9 +42,10 @@ export function RSVPProvider({ children }: { children: ReactNode }) {
       const { data, error } = await supabase
         .from('rsvps')
         .select(`
-          id, wedding_id, guestName, email, attending, guestCount, 
-          message, createdAt, updatedAt, isDeleted, allergies, dietaryRequirements
+          id, wedding_id, guestName, email, attending, guestCount,
+          message, createdAt, updatedAt, isDeleted, allergies, dietaryRequirements, notes
         `)
+        .eq('wedding_id', CURRENT_WEDDING_ID)
         .order('createdAt', { ascending: false });
       if (error) throw error;
       setAllEntries((data as any) || []);
@@ -60,7 +61,7 @@ export function RSVPProvider({ children }: { children: ReactNode }) {
     fetchRSVPs();
     const channel = supabase
       .channel('rsvp_dashboard_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'rsvps' }, () => fetchRSVPs())
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'rsvps', filter: `wedding_id=eq.${CURRENT_WEDDING_ID}` }, () => fetchRSVPs())
       .subscribe();
     return () => { supabase.removeChannel(channel); };
   }, []);
@@ -100,6 +101,7 @@ export function RSVPProvider({ children }: { children: ReactNode }) {
     if (updates.isDeleted !== undefined) dbUpdates.isDeleted = updates.isDeleted;
     if (updates.dietaryRequirements !== undefined) dbUpdates.dietaryRequirements = updates.dietaryRequirements;
     if (updates.allergies !== undefined) dbUpdates.allergies = updates.allergies;
+    if (updates.notes !== undefined) dbUpdates.notes = updates.notes;
 
     const { error } = await supabase.from('rsvps').update(dbUpdates).eq('id', id);
     if (error) throw error;
